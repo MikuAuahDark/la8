@@ -21,12 +21,14 @@ function la8.set(imageData)
 	-- Make sure it's memoized
 	imageData:getFormat()
 	ffi.cast("struct LOVEImageData**", imageData)[1].format = 16 -- "PIXELFORMAT_LA8"
+	return imageData
 end
 
 ---@param imageData ImageData
 function la8.unset(imageData)
 	assert(imageData:typeOf("ImageData"))
 	ffi.cast("struct LOVEImageData**", imageData)[1].format = 4 -- "PIXELFORMAT_RG8"
+	return imageData
 end
 
 return la8
