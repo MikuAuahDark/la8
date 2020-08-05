@@ -31,8 +31,13 @@ end
 
 love.update = game.update
 
+local function draw()
+	love.graphics.clear()
+	return game.draw()
+end
+
 function love.draw()
-	canvas:renderTo(game.draw)
+	canvas:renderTo(draw)
 
 	local w, h = love.graphics.getDimensions()
 	love.graphics.setShader(lashader)
