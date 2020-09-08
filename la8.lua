@@ -1,17 +1,30 @@
 -- Set LA8 pixel format to ImageData
 
+local love = require("love")
 local ffi = require("ffi")
 
 ---@language cpp
-ffi.cdef[[
-struct LOVEImageData
-{
-	void *vtable;
-	int count, _unk;
+if love._os == "Windows" then
+	ffi.cdef[[
+	struct LOVEImageData
+	{
+		void *vtable;
+		int count, _unk;
 
-	int format;
-};
-]]
+		int format;
+	};
+	]]
+else
+	ffi.cdef[[
+	struct LOVEImageData
+	{
+		void *vtable;
+		int count;
+
+		int format;
+	};
+	]]
+end
 
 local la8 = {}
 
